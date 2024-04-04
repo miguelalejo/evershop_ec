@@ -227,6 +227,7 @@ module.exports = async (data, context) => {
   if (context && typeof context !== 'object') {
     throw new Error('Context must be an object');
   }
+  console.log("data",data);
   const product = await hookable(createProduct, context)(data, context);
   return product;
 };
