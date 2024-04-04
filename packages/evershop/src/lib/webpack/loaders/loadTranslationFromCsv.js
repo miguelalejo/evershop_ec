@@ -8,7 +8,7 @@ const { error } = require('../../log/debuger');
 module.exports.loadCsvTranslationFiles =
   async function loadCsvTranslationFiles() {
     try {
-      const language = getConfig('shop.language', 'en');
+      const language = getConfig('shop.language', 'es');
       const folderPath = path.resolve(
         CONSTANTS.ROOTPATH,
         'translations',

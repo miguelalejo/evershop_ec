@@ -17,7 +17,7 @@ function normalizeAssets(assets) {
 
 function renderDevelopment(request, response) {
   const route = request.locals.webpackMatchedRoute;
-  const language = getConfig('shop.language', 'en');
+  const language = getConfig('shop.language', 'es');
   if (!route) {
     // In testing mode, we do not have devMiddleware
     response.send(`
@@ -74,7 +74,7 @@ function renderDevelopment(request, response) {
 
 function renderProduction(request, response) {
   const routes = getRoutes();
-  const language = getConfig('shop.language', 'en');
+  const language = getConfig('shop.language', 'es');
   const frontNotFound = routes.find((route) => route.id === 'notFound');
   const adminNotFound = routes.find((route) => route.id === 'adminNotFound');
   const notFound = request.currentRoute?.isAdmin
