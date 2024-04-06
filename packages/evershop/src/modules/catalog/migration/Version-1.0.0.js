@@ -685,14 +685,12 @@ module.exports = exports = async (connection) => {
   await execute(
     connection,
     `CREATE TABLE "product_detail" (
-  "product_detail_id" INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) PRIMARY KEY,
-  "uuid" UUID NOT NULL DEFAULT gen_random_uuid (),
-  "product_id" INT NOT NULL,
-  "main_code" varchar(25) NOT NULL,
-  "aux_code" varchar(25) NOT NULL,
-  CONSTRAINT "PRODUCT_DETAIL_UUID_UNIQUE" UNIQUE ("uuid"),
-  CONSTRAINT "OPTION_VALUE_UNIQUE" UNIQUE ("product_id","attribute_id","option_id"),  
-  CONSTRAINT "FK_PRODUCT_DETAIL" FOREIGN KEY ("product_id") REFERENCES "product" ("product_id") ON DELETE CASCADE
+      "product_detail_id" INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) PRIMARY KEY,      
+      "product_detail_product_id" INT NOT NULL,
+      "main_code" varchar(25) NOT NULL,
+      "aux_code" varchar(25) NOT NULL,      
+      CONSTRAINT "PRODUCT_DETAIL_PRODUCT_ID_UNIQUE" UNIQUE ("product_detail_product_id"),
+      CONSTRAINT "FK_PRODUCT_DETAIL" FOREIGN KEY ("product_detail_product_id") REFERENCES "product" ("product_id") ON DELETE CASCADE
 )`
   );
 };

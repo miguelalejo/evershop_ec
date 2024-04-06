@@ -186,6 +186,34 @@ export default function General({
             {
               component: { default: Field },
               props: {
+                id: 'main_code',
+                name: 'main_code',
+                label: 'Main Code',
+                value: product?.mainCode,
+                validationRules: ['notEmpty'],
+                type: 'text',
+                placeholder: 'Main Code'
+              },
+              sortOrder: 10,
+              id: 'main_code'
+            },
+            {
+              component: { default: Field },
+              props: {
+                id: 'aux_code',
+                name: 'aux_code',
+                label: 'Aux Code',
+                value: product?.auxCode,
+                validationRules: ['notEmpty'],
+                type: 'text',
+                placeholder: 'Aux Code'
+              },
+              sortOrder: 10,
+              id: 'aux_code'
+            },
+            {
+              component: { default: Field },
+              props: {
                 id: 'product_id',
                 name: 'product_id',
                 value: product?.productId,
@@ -258,6 +286,8 @@ General.propTypes = {
   product: PropTypes.shape({
     description: PropTypes.string,
     name: PropTypes.string,
+    mainCode: PropTypes.string,
+    auxCode: PropTypes.string,
     price: PropTypes.shape({
       regular: PropTypes.shape({
         currency: PropTypes.string,

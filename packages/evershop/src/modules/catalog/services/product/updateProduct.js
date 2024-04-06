@@ -263,7 +263,15 @@ async function updateProductData(uuid, data, connection) {
       '=',
       'product.product_id'
     );
+  query
+    .leftJoin('product_detail')
+    .on(
+      'product_detail.product_detail_product_id',
+      '=',
+      'product.product_id'
+    );
   const product = await query.where('uuid', '=', uuid).load(connection);
+  console.log("product",product);
   if (!product) {
     throw new Error('Requested product not found');
   }
@@ -287,6 +295,21 @@ async function updateProductData(uuid, data, connection) {
       .execute(connection);
     Object.assign(product, description);
   } catch (e) {
+    if (!e.message.includes('No data was provided')) {
+      throw e;
+    }
+  }
+
+  console.log("data",data);
+
+  try {
+    const detail = await update('product_detail')
+      .given(data)
+      .where('product_detail_product_id', '=', product.product_id)
+      .execute(connection);
+    Object.assign(product, detail);
+  } catch (e) {
+    console.log("error",e);
     if (!e.message.includes('No data was provided')) {
       throw e;
     }

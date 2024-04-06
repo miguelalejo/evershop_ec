@@ -10,6 +10,8 @@ type Product {
   weight: Weight!
   taxClass: Int
   description: String
+  mainCode: String
+  auxCode: String
   urlKey: String
   metaTitle: String
   metaDescription: String
