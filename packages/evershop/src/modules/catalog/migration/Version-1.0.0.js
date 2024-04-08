@@ -681,4 +681,16 @@ module.exports = exports = async (connection) => {
     EXECUTE PROCEDURE delete_variant_group_after_attribute_type_changed();
     `
   );
+// Data For Custom Producto EC Billing
+  await execute(
+    connection,
+    `CREATE TABLE "product_detail" (
+      "product_detail_id" INT GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) PRIMARY KEY,      
+      "product_detail_product_id" INT NOT NULL,
+      "main_code" varchar(25) NOT NULL,
+      "aux_code" varchar(25) NOT NULL,      
+      CONSTRAINT "PRODUCT_DETAIL_PRODUCT_ID_UNIQUE" UNIQUE ("product_detail_product_id"),
+      CONSTRAINT "FK_PRODUCT_DETAIL" FOREIGN KEY ("product_detail_product_id") REFERENCES "product" ("product_id") ON DELETE CASCADE
+)`
+  );
 };

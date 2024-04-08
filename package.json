@@ -54,6 +54,6 @@
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "dependencies": {
-    "@evershop/evershop": "^1.0.0"
+    "config": "^3.3.11"
   }
 }

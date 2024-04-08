@@ -6,6 +6,7 @@ const {
 
 module.exports = async (request, response, delegate, next) => {
   try {
+    console.log("edit here");
     const query = select();
     query.from('product');
     query.andWhere('product.uuid', '=', request.params.id);
@@ -16,7 +17,15 @@ module.exports = async (request, response, delegate, next) => {
         '=',
         'product.product_id'
       );
+    query
+      .leftJoin('product_detail')
+      .on(
+        'product_detail.product_detail_product_id',
+        '=',
+        'product.product_id'
+      );
     const product = await query.load(pool);
+    console.log("edit prod ",product);
 
     if (product === null) {
       response.status(404);

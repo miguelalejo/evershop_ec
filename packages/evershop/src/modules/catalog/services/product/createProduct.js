@@ -166,10 +166,15 @@ async function insertProductData(data, connection) {
     .given(data)
     .prime('product_description_product_id', product.product_id)
     .execute(connection);
+  const detail = await insert('product_detail')
+    .given(data)
+    .prime('product_detail_product_id', product.product_id)
+    .execute(connection);
 
   return {
+    ...detail,
     ...description,
-    ...product
+    ...product    
   };
 }
 
@@ -183,6 +188,7 @@ async function createProduct(data, context) {
   await startTransaction(connection);
   try {
     const productData = await getValue('productDataBeforeCreate', data);
+    console.log("data",data);
 
     // Validate product data
     validateProductDataBeforeInsert(productData);
@@ -227,6 +233,7 @@ module.exports = async (data, context) => {
   if (context && typeof context !== 'object') {
     throw new Error('Context must be an object');
   }
+  console.log("data",data);
   const product = await hookable(createProduct, context)(data, context);
   return product;
 };
