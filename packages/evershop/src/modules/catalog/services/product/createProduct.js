@@ -187,9 +187,7 @@ async function createProduct(data, context) {
   const connection = await getConnection();
   await startTransaction(connection);
   try {
-    const productData = await getValue('productDataBeforeCreate', data);
-    console.log("data",data);
-
+    const productData = await getValue('productDataBeforeCreate', data);    
     // Validate product data
     validateProductDataBeforeInsert(productData);
 
@@ -232,8 +230,7 @@ module.exports = async (data, context) => {
   // Make sure the context is either not provided or is an object
   if (context && typeof context !== 'object') {
     throw new Error('Context must be an object');
-  }
-  console.log("data",data);
+  }  
   const product = await hookable(createProduct, context)(data, context);
   return product;
 };

@@ -270,8 +270,7 @@ async function updateProductData(uuid, data, connection) {
       '=',
       'product.product_id'
     );
-  const product = await query.where('uuid', '=', uuid).load(connection);
-  console.log("product",product);
+  const product = await query.where('uuid', '=', uuid).load(connection);  
   if (!product) {
     throw new Error('Requested product not found');
   }
@@ -299,9 +298,6 @@ async function updateProductData(uuid, data, connection) {
       throw e;
     }
   }
-
-  console.log("data",data);
-
   try {
     const flag_detail = await select('product_detail_id')
     .from('product_detail')
@@ -323,8 +319,7 @@ async function updateProductData(uuid, data, connection) {
 
     
     
-  } catch (e) {
-    console.log("error",e);
+  } catch (e) {    
     if (!e.message.includes('No data was provided')) {
       throw e;
     }
@@ -347,8 +342,7 @@ async function updateProductData(uuid, data, connection) {
         .execute(connection);
     }
   }
-  Object.assign(product, newProduct);
-  console.log("product",product);
+  Object.assign(product, newProduct);  
   return product;
 }
 
@@ -406,8 +400,7 @@ async function updateProduct(uuid, data, context) {
       productData.images,
       product.product_id,
       connection
-    );
-    console.log("res product",product);
+    );    
 
     await commit(connection);
     return product;

@@ -34,8 +34,7 @@ export function SubmitButton({
       );
 
       // Merge product and variant form data
-      const formData = new FormData();
-      print("formData")
+      const formData = new FormData();     
       // eslint-disable-next-line no-restricted-syntax
       for (const [key, value] of productFormData.entries()) {
         // Do not include 'images[]' key

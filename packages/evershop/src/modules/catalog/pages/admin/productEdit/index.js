@@ -5,8 +5,7 @@ const {
 } = require('../../../../graphql/services/contextHelper');
 
 module.exports = async (request, response, delegate, next) => {
-  try {
-    console.log("edit here");
+  try {    
     const query = select();
     query.from('product');
     query.andWhere('product.uuid', '=', request.params.id);
@@ -24,8 +23,7 @@ module.exports = async (request, response, delegate, next) => {
         '=',
         'product.product_id'
       );
-    const product = await query.load(pool);
-    console.log("edit prod ",product);
+    const product = await query.load(pool);    
 
     if (product === null) {
       response.status(404);
