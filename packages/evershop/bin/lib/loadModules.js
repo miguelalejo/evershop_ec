@@ -20,6 +20,11 @@ const coreModules = [
     path: path.resolve(__dirname, '../../src/modules/catalog')
   },
   {
+    name: 'business',
+    resolve: path.resolve(__dirname, '../../src/modules/business'),
+    path: path.resolve(__dirname, '../../src/modules/business')
+  },
+  {
     name: 'checkout',
     resolve: path.resolve(__dirname, '../../src/modules/checkout'),
     path: path.resolve(__dirname, '../../src/modules/checkout')
