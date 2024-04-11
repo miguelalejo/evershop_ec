@@ -15,10 +15,18 @@
       "type": "string"
     },
     "main_code": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^\\S+$",
+      "errorMessage": {
+        "pattern": "Main code key should not contain spaces"
+      }
     },
-    "aux_code": {
-      "type": "string"
+    "aux_code": {      
+      "type": "string",
+      "pattern": "^\\S+$",
+      "errorMessage": {
+        "pattern": "Aux code key should not contain spaces"
+      }
     },
     "url_key": {
       "type": "string",

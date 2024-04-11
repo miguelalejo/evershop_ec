@@ -693,4 +693,9 @@ module.exports = exports = async (connection) => {
       CONSTRAINT "FK_PRODUCT_DETAIL" FOREIGN KEY ("product_detail_product_id") REFERENCES "product" ("product_id") ON DELETE CASCADE
 )`
   );
+
+  await execute(
+    connection,
+    `CREATE INDEX "FK_PRODUCT_DETAIL" ON "product_detail" ("product_detail_product_id")`
+  );
 };
