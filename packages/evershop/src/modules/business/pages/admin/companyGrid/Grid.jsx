@@ -9,7 +9,7 @@ import Pagination from '@components/common/grid/Pagination';
 import { useAlertContext } from '@components/common/modal/Alert';
 import { Checkbox } from '@components/common/form/fields/Checkbox';
 import { Card } from '@components/admin/cms/Card';
-import CollectionNameRow from '@components/admin/catalog/collectionGrid/rows/CollectionNameRow';
+import CollectionNameRow from '@components/admin/business/companyGrid/rows/CompanyNameRow';
 import BasicColumnHeader from '@components/common/grid/headers/Basic';
 import TextRow from '@components/common/grid/rows/TextRow';
 import DummyColumnHeader from '@components/common/grid/headers/Dummy';
@@ -92,7 +92,7 @@ Actions.propTypes = {
   ).isRequired
 };
 
-export default function CollectionGrid({
+export default function CompanyGrid({
   companies: { items: companies, total, currentFilters = [] }
 }) {
   const page = currentFilters.find((filter) => filter.key === 'page')
@@ -122,7 +122,7 @@ export default function CollectionGrid({
               </th>
               <Area
                 className=""
-                id="collectionGridHeader"
+                id="CompanyGridHeader"
                 noOuter
                 coreComponents={[
                   {
@@ -130,7 +130,7 @@ export default function CollectionGrid({
                       default: () => (
                         <DummyColumnHeader
                           title="ID"
-                          id="collectionId"
+                          id="companyId"
                           currentFilters={currentFilters}
                         />
                       )
@@ -141,8 +141,8 @@ export default function CollectionGrid({
                     component: {
                       default: () => (
                         <BasicColumnHeader
-                          title="Collection Name"
-                          id="name"
+                          title="Full Name"
+                          id="fullName"
                           currentFilters={currentFilters}
                         />
                       )
@@ -153,8 +153,8 @@ export default function CollectionGrid({
                     component: {
                       default: () => (
                         <BasicColumnHeader
-                          title="Code"
-                          id="code"
+                          title="RUC"
+                          id="ruc"
                           currentFilters={currentFilters}
                         />
                       )
@@ -188,13 +188,13 @@ export default function CollectionGrid({
                 </td>
                 <Area
                   className=""
-                  id="collectionGridRow"
+                  id="CompanyGridRow"
                   row={c}
                   noOuter
                   coreComponents={[
                     {
                       component: {
-                        default: () => <TextRow text={c.collectionId} />
+                        default: () => <TextRow text={c.companyId} />
                       },
                       sortOrder: 5
                     },
@@ -203,7 +203,7 @@ export default function CollectionGrid({
                         default: () => (
                           <CollectionNameRow
                             id="name"
-                            name={c.name}
+                            name={c.fullName}
                             url={c.editUrl}
                           />
                         )
@@ -233,14 +233,14 @@ export default function CollectionGrid({
   );
 }
 
-CollectionGrid.propTypes = {
-  collections: PropTypes.shape({
+CompanyGrid.propTypes = {
+  companies: PropTypes.shape({
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        collectionId: PropTypes.number.isRequired,
+        companyId: PropTypes.number.isRequired,
         uuid: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        code: PropTypes.string.isRequired,
+        fullName: PropTypes.string.isRequired,
+        ruc: PropTypes.string.isRequired,
         editUrl: PropTypes.string.isRequired,
         deleteApi: PropTypes.string.isRequired
       })
@@ -263,12 +263,12 @@ export const layout = {
 
 export const query = `
   query Query($filters: [FilterInput]) {
-    collections (filters: $filters) {
+    companies (filters: $filters) {
       items {
-        collectionId
+        companyId
         uuid
-        name
-        code
+        fullName
+        ruc
         editUrl
         deleteApi
       }

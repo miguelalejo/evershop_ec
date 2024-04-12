@@ -17,7 +17,7 @@ export default function BusinessMenuGroup({
         {
           Icon: ProductIcon,
           url: companyGrid,
-          title: 'BusinessGrid'
+          title: 'Companies'
         }
       ]}
     />

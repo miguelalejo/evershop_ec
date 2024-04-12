@@ -1,8 +1,8 @@
 """
-The `Company` type represents a company object.
+The `Category` type represents a category object.
 """
-type Company {
-  companyId: ID!
+type Category {
+  categoryId: ID!
   uuid: String!
   name: String!
   status: Int!
@@ -14,16 +14,16 @@ type Company {
   metaKeywords: String
   image: CategoryImage
   products(filters: [FilterInput]): ProductCollection
-  children: [Company]
-  parent: Company
-  path: [Company]
+  children: [Category]
+  parent: Category
+  path: [Category]
   url: String
   availableAttributes: [FilterAttribute]
   priceRange: PriceRange
 }
 
 """
-The `CategoryImage` type represents a company image object.
+The `CategoryImage` type represents a category image object.
 """
 type CategoryImage {
   alt: String!
@@ -70,7 +70,7 @@ type FilterAttribute {
 Returns a collection of categories.
 """
 type CategoryCollection {
-  items: [Company]
+  items: [Category]
   currentPage: Int!
   total: Int!
   currentFilters: [Filter]
@@ -82,10 +82,10 @@ type PriceRange {
 }
 
 extend type Product {
-  company: Company,
+  category: Category,
 }
 
 extend type Query {
   categories(filters: [FilterInput]): CategoryCollection
-  company(id: Int): Company
+  category(id: Int): Category
 }

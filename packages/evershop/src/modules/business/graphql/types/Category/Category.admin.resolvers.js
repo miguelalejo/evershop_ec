@@ -2,11 +2,11 @@ const { select } = require('@evershop/postgres-query-builder');
 const { buildUrl } = require('@evershop/evershop/src/lib/router/buildUrl');
 
 module.exports = {
-  Company: {
-    editUrl: (company) => buildUrl('categoryEdit', { id: company.uuid }),
-    updateApi: (company) => buildUrl('updateCategory', { id: company.uuid }),
-    deleteApi: (company) => buildUrl('deleteCategory', { id: company.uuid }),
-    addProductUrl: (company) =>
+  Category: {
+    editUrl: (category) => buildUrl('categoryEdit', { id: category.uuid }),
+    updateApi: (category) => buildUrl('updateCategory', { id: category.uuid }),
+    deleteApi: (category) => buildUrl('deleteCategory', { id: category.uuid }),
+    addProductUrl: (category) =>
       buildUrl('addProductToCategory', { category_id: category.uuid })
   },
   Product: {
